@@ -1,0 +1,7 @@
+venv
+app.db
+app.egg-info
+build
+dist
+
+.idea
