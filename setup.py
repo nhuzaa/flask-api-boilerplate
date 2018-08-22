@@ -10,7 +10,6 @@ setup(
         'flask-sqlalchemy',
         'flask-migrate',
         'flask-marshmallow',
-        'flask-restful',
         'marshmallow-sqlalchemy'
     ],
 )
