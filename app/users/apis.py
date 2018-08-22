@@ -1,8 +1,9 @@
 from flask import request
-from .schemas import UserSchema
 from flask_restful import Resource
-from app.services import users_service
 from marshmallow import exceptions as marsh_exceptions
+
+from .schemas import UserSchema
+from app.services import users_service
 
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
@@ -17,6 +18,9 @@ class UsersResource(Resource):
 
     def post(self):
         json_data = request.get_json(force=True)
+
+        if not UserSchema.validate_password(json_data['password']):
+            return {"status": "error", "data": "Invalid password"}, 422
 
         try:
             data = user_schema.load(json_data)
