@@ -10,7 +10,7 @@ user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
 
-@users_bp.route('/users', methods=['GET'])
+@users_bp.route('/', methods=['GET'])
 def get_users():
     users = users_service.all()
     users = users_schema.dump(users)
@@ -18,7 +18,7 @@ def get_users():
     return jsonify({'status': 'success', 'data': users}), 200
 
 
-@users_bp.route('/users', methods=['POST'])
+@users_bp.route('/', methods=['POST'])
 def post_user():
     json_data = request.get_json(force=True)
 
@@ -37,7 +37,7 @@ def post_user():
     return jsonify({'status': "success", 'data': result}), 201
 
 
-@users_bp.route('/users/<int:user_id>', methods=['GET'])
+@users_bp.route('/<int:user_id>', methods=['GET'])
 def get_user(user_id):
     user = users_service.get_or_404(user_id)
     user = user_schema.dump(user)
@@ -45,7 +45,7 @@ def get_user(user_id):
     return jsonify({'status': 'success', 'data': user}), 200
 
 
-@users_bp.route('/users/<int:user_id>', methods=['PUT'])
+@users_bp.route('/<int:user_id>', methods=['PUT'])
 def put_user(user_id):
     json_data = request.get_json(force=True)
 

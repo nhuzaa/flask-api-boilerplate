@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_migrate import Migrate
 from app.db import db
+from .routes import register_routes
 
 
 def create_app():
@@ -10,9 +11,7 @@ def create_app():
     app.config.from_pyfile('config.py')
 
     db.init_app(app)
-
-    from .users import users_bp
-    app.register_blueprint(users_bp)
+    register_routes(app)
 
     Migrate(app, db)
 
