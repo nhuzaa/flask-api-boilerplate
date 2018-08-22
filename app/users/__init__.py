@@ -46,7 +46,7 @@ def get_user(user_id):
 
 
 @users_bp.route('/users/<int:user_id>', methods=['PUT'])
-def put(user_id):
+def put_user(user_id):
     json_data = request.get_json(force=True)
 
     user = users_service.get_or_404(user_id)
