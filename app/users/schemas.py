@@ -1,4 +1,4 @@
-from marshmallow import fields, validate
+from marshmallow import fields, validate, exceptions as marsh_exceptions
 from flask_marshmallow import Marshmallow
 
 ma = Marshmallow()
@@ -15,4 +15,5 @@ class UserSchema(ma.Schema):
 
     @classmethod
     def validate_password(cls, password):
-        return len(password) > 8
+        if len(password) < 8:
+            raise marsh_exceptions.ValidationError(message={"password": "Invalid password format"})
