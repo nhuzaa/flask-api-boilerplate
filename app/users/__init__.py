@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify
-from marshmallow import exceptions as marsh_exceptions
 
 from .schemas import UserSchema
 from app.services import users_service
