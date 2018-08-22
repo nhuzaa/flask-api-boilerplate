@@ -3,6 +3,7 @@ from flask_migrate import Migrate
 from app.db import db
 from .routes import register_routes
 from .errorhandler import init_errorhandler
+from .loghandler import init_logging
 
 
 def create_app():
@@ -16,5 +17,9 @@ def create_app():
     init_errorhandler(app)
 
     Migrate(app, db)
+
+    init_logging(app)
+
+    app.logger.info("Server started")
 
     return app

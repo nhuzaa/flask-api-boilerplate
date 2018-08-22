@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from flask import current_app
 
 from .schemas import UserSchema
 from app.services import users_service
@@ -28,6 +29,7 @@ def post_user():
     user = users_service.create(**data)
 
     result = user_schema.dump(user)
+    current_app.logger.info("New user registration, %s", result)
 
     return jsonify(result), 201
 

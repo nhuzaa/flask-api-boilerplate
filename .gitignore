@@ -3,6 +3,7 @@ app.db
 app.egg-info
 build
 dist
+logs
 
 instance
 
