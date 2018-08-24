@@ -17,3 +17,13 @@ https://gist.github.com/ibeex/3257877
 # Configuration
 http://flask.pocoo.org/docs/0.12/config/
 
+
+# TODO
+- DOCKER (Sudhir)
+- TESTING (Anuj)
+- SWAGGER (Shree Krishna)
+- CI (TBD)
+- PYLINT (TBD)
+- SENTRY (Achyut)
+- AUTH (Rohit)
+

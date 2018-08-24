@@ -36,7 +36,9 @@ def post_user():
 
 @users_bp.route('/<int:user_id>', methods=['GET'])
 def get_user(user_id):
+
     user = users_service.get_or_404(user_id)
+
     user = user_schema.dump(user)
 
     return jsonify(user), 200
