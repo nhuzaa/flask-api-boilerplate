@@ -2,8 +2,7 @@ from flask import Flask
 from flask_migrate import Migrate
 from app.db import db
 from .routes import register_routes
-from .errorhandler import init_errorhandler
-from .loghandler import init_logging
+from .initializers import errorhandler, loghandler
 
 
 def create_app():
@@ -14,11 +13,11 @@ def create_app():
 
     db.init_app(app)
     register_routes(app)
-    init_errorhandler(app)
+    errorhandler.init_errorhandler(app)
 
     Migrate(app, db)
 
-    init_logging(app)
+    loghandler.init_logging(app)
 
     app.logger.info("Server started")
 
