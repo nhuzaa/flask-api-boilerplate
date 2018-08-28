@@ -1,13 +1,14 @@
 from flask import Blueprint, request, jsonify
 from flask import current_app
 
+from .services import UsersService
 from .schemas import UserSchema
-from app.services import users_service
 
-users_bp = Blueprint('users', __name__)
-
+users_service = UsersService()
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
+
+users_bp = Blueprint('users', __name__)
 
 
 @users_bp.route('/', methods=['GET'])
@@ -36,7 +37,6 @@ def post_user():
 
 @users_bp.route('/<int:user_id>', methods=['GET'])
 def get_user(user_id):
-
     user = users_service.get_or_404(user_id)
 
     user = user_schema.dump(user)

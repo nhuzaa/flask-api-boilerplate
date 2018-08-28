@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='app',
-    packages=find_packages(),
+    packages=['app'],
     include_package_data=True,
     install_requires=[
         'psycopg2-binary',
@@ -10,6 +10,7 @@ setup(
         'flask-sqlalchemy',
         'flask-migrate',
         'flask-marshmallow',
-        'marshmallow-sqlalchemy'
+        'marshmallow-sqlalchemy',
+        'requests'
     ],
 )
