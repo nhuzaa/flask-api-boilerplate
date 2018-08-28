@@ -16,4 +16,6 @@ class UserSchema(ma.Schema):
     @classmethod
     def validate_password(cls, password):
         if len(password) < 8:
-            raise marsh_exceptions.ValidationError(message={"password": "Invalid password format"})
+            raise marsh_exceptions.ValidationError(
+                message={"password": "Invalid password format"}
+            )

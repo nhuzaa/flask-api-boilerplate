@@ -8,10 +8,10 @@ users_service = UsersService()
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
-users_bp = Blueprint('users', __name__)
+users_bp = Blueprint("users", __name__)
 
 
-@users_bp.route('/', methods=['GET'])
+@users_bp.route("/", methods=["GET"])
 def get_users():
     users = users_service.all()
     users = users_schema.dump(users)
@@ -19,11 +19,11 @@ def get_users():
     return jsonify(users), 200
 
 
-@users_bp.route('/', methods=['POST'])
+@users_bp.route("/", methods=["POST"])
 def post_user():
     json_data = request.get_json(force=True)
 
-    UserSchema.validate_password(json_data['password'])
+    UserSchema.validate_password(json_data["password"])
 
     data = user_schema.load(json_data)
 
@@ -35,7 +35,7 @@ def post_user():
     return jsonify(result), 201
 
 
-@users_bp.route('/<int:user_id>', methods=['GET'])
+@users_bp.route("/<int:user_id>", methods=["GET"])
 def get_user(user_id):
     user = users_service.get_or_404(user_id)
 
@@ -44,7 +44,7 @@ def get_user(user_id):
     return jsonify(user), 200
 
 
-@users_bp.route('/<int:user_id>', methods=['PUT'])
+@users_bp.route("/<int:user_id>", methods=["PUT"])
 def put_user(user_id):
     json_data = request.get_json(force=True)
 

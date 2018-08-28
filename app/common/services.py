@@ -6,6 +6,7 @@ class Service(object):
     """A :class:`Service` instance encapsulates common SQLAlchemy model
     operations in the context of a :class:`Flask` application.
     """
+
     __model__ = None
 
     def _isinstance(self, model, raise_error=True):
@@ -17,7 +18,7 @@ class Service(object):
         """
         rv = isinstance(model, self.__model__)
         if not rv and raise_error:
-            raise ValueError('%s is not of type %s' % (model, self.__model__))
+            raise ValueError("%s is not of type %s" % (model, self.__model__))
         return rv
 
     def _preprocess_params(self, kwargs):
@@ -25,7 +26,7 @@ class Service(object):
         before creating a new instance or updating an existing instance.
         :param kwargs: a dictionary of parameters
         """
-        kwargs.pop('csrf_token', None)
+        kwargs.pop("csrf_token", None)
         return kwargs
 
     def save(self, model):

@@ -10,8 +10,8 @@ SQLALCHEMY_ECHO = False
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 SQLALCHEMY_DATABASE_URI = "postgresql://sudhirt4@localhost:5432/testing"
 
-LOGGING_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-LOGGING_LOCATION = 'logs/app.log'
+LOGGING_FORMAT = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+LOGGING_LOCATION = "logs/app.log"
 LOGGING_LEVEL = logging.DEBUG
 
 WEATHER_APP_BASE_URL = "https://samples.openweathermap.org/data/2.5"
