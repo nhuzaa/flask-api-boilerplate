@@ -1,1 +1,1 @@
-get_all = "/weather"
+GET_ALL = "/weather"

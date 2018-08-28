@@ -4,7 +4,7 @@ from . import endpoints
 
 class WeatherService(object):
     def all(self, query):
-        endpoint = endpoints.get_all
+        endpoint = endpoints.GET_ALL
         params = {
             'q': query
         }
