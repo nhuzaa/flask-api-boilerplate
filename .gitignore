@@ -5,6 +5,7 @@ build
 dist
 logs
 .eggs
+.pytest_cache
 
 instance
 
