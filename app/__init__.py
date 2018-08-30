@@ -5,11 +5,16 @@ from .routes import register_routes
 from .initializers import errorhandler, loghandler
 
 
-def create_app():
+def create_app(is_test=False):
     app = Flask(__name__, instance_relative_config=True)
 
     app.config.from_object("app.settings")
-    app.config.from_pyfile("config.py")
+
+    if is_test:
+        app.config.from_pyfile("test_config.py")
+        app.config["TESTING"] = True
+    else:
+        app.config.from_pyfile("config.py")
 
     db.init_app(app)
     register_routes(app)

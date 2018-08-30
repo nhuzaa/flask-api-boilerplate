@@ -4,6 +4,7 @@ app.egg-info
 build
 dist
 logs
+.eggs
 
 instance
 

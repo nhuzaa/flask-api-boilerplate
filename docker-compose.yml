@@ -1,0 +1,21 @@
+version: "2"
+services:
+  server:
+    container_name: app
+    image: python:3.7.0
+    ports:
+      - 3000:3000
+    volumes:
+      - "./:/home/server"
+    command: /bin/sh -c "python setup.py install"
+    network_mode: "host"
+    working_dir: /home/server
+#  nginx:
+#    container_name: app_nginx
+#    build: ./nginx
+#    ports:
+#        - 80:80
+#    volumes:
+#      - "../../:/home/server"
+
+#TODO:

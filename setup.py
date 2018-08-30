@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="app",
-    packages=["app"],
+    packages=find_packages(),
     include_package_data=True,
     install_requires=[
         "psycopg2-binary",
@@ -13,4 +13,6 @@ setup(
         "marshmallow-sqlalchemy",
         "requests",
     ],
+    setup_requires=["pytest-runner"],
+    tests_require=["pytest"],
 )

@@ -32,3 +32,7 @@ http://flask.pocoo.org/docs/0.12/config/
 https://github.com/noirbizarre/flask-restplus
 
 https://github.com/ambv/black
+
+https://stackoverflow.com/questions/17001010/how-to-run-unittest-discover-from-python-setup-py-test
+
+https://blog.ionelmc.ro/2014/05/25/python-packaging/#the-structure

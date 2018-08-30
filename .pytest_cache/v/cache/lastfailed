@@ -1,0 +1,7 @@
+{
+  "tests/app/users/test_users_services.py::UsersServicesTestCase::test_create": true,
+  "tests/app/users/test_users_services.py::UsersServicesTestCase::test_create_with_invalid_password": true,
+  "tests/app/weather/test_apis.py::UserModelTestCase": true,
+  "tests/app/weather/test_services.py::UserModelTestCase": true,
+  "tests/test_conf.py::test_logout": true
+}
