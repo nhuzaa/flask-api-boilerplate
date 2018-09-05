@@ -30,23 +30,40 @@ def db(app):
     return _db
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="session")
 def client(app):
     return app.test_client()
 
 
+from sqlalchemy import event
+
+
 @pytest.yield_fixture(scope="function", autouse=True)
 def session(db):
-    connection = db.engine.connect()
-    transaction = connection.begin()
+    """
+    Referred from : https://github.com/pytest-dev/pytest-flask/issues/70#issuecomment-361005780
 
-    options = dict(bind=connection)
-    session = db.create_scoped_session(options=options)
+    :param db:
+    :return:
+    """
+    with db.app.app_context():
+        conn = _db.engine.connect()
+        txn = conn.begin()
 
-    db.session = session
+        options = dict(bind=conn, binds={})
+        sess = _db.create_scoped_session(options=options)
 
-    yield session
+        sess.begin_nested()
 
-    transaction.rollback()
-    connection.close()
-    session.remove()
+        @event.listens_for(sess(), "after_transaction_end")
+        def restart_savepoint(sess2, trans):
+            if trans.nested and not trans._parent.nested:
+                sess2.expire_all()
+                sess.begin_nested()
+
+        _db.session = sess
+        yield sess
+
+        sess.remove()
+        txn.rollback()
+        conn.close()

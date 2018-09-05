@@ -21,7 +21,7 @@
 #     pytest.skip("WIP")
 #     pass
 
-import pytest
+
 from app.users.services import UsersService
 
 users_service = UsersService()
@@ -29,14 +29,3 @@ users_service = UsersService()
 
 def test_setup(app):
     assert app.config["TESTING"] == True
-
-
-def test_create_with_invalid_parameters():
-    data = {
-        "first_name": "Sudhir",
-        "last_name": "Shrestha",
-        "username": "sudhirt4",
-        "password": "password",
-    }
-    with pytest.raises(TypeError):
-        users_service.create(**data)
