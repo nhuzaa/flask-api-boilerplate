@@ -1,11 +1,8 @@
 import json
 
-from tests.test_base import BaseTestCase
 
+def test_get_users(client):
+    response = client.get("/users/")
 
-class UsersAPITestCase(BaseTestCase):
-    def test_get_users(self):
-        response = self.app_test_client.get("/users/")
-
-        assert response.status_code == 200
-        assert json.loads(response.data) == []
+    assert response.status_code == 200
+    assert json.loads(response.data) == []

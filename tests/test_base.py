@@ -1,24 +1,42 @@
-import unittest
+# EXAMPLES:
+# def test_add_and_lookup_entry(phonebook):
+#     phonebook.add("Bob", "123")
+#     assert "123" == phonebook.lookup("Bob")
+#
+#
+# def test_phonebook_gives_access_to_names_and_numbers(phonebook):
+#     phonebook.add("Alice", "234")
+#     phonebook.add("Bob", "123")
+#     assert set(phonebook.names()) == {"Alice", "Bob"}
+#     assert "234" in phonebook.numbers()
+#     # assert "Ali" in phonebook.names()
+#
+#
+# def test_missing_entry_raises_KeyError(phonebook):
+#     with pytest.raises(KeyError):
+#         phonebook.lookup("missing")
+#
+#
+# def test_skip_this():
+#     pytest.skip("WIP")
+#     pass
 
-from app import create_app, db
-from flask import current_app
+import pytest
+from app.users.services import UsersService
+
+users_service = UsersService()
 
 
-class BaseTestCase(unittest.TestCase):
-    def setUp(self):
-        self.app = create_app("testing")
-        self.app_test_client = self.app.test_client()
-        self.app_context = self.app.app_context()
-        self.app_context.push()
-        db.create_all()
+def test_setup(app):
+    assert app.config["TESTING"] == True
 
-    def tearDown(self):
-        db.session.remove()
-        db.drop_all()
-        self.app_context.pop()
 
-    def test_app_exists(self):
-        self.assertFalse(current_app is None)
-
-    def test_app_is_testing(self):
-        self.assertTrue(current_app.config["TESTING"])
+def test_create_with_invalid_parameters():
+    data = {
+        "first_name": "Sudhir",
+        "last_name": "Shrestha",
+        "username": "sudhirt4",
+        "password": "password",
+    }
+    with pytest.raises(TypeError):
+        users_service.create(**data)
