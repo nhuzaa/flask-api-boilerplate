@@ -1,5 +1,7 @@
 from flask import Flask
 from flask_migrate import Migrate
+import os
+
 from app.db import db
 from .routes import register_routes
 from .initializers import errorhandler, loghandler
@@ -10,11 +12,16 @@ def create_app(is_test=False):
 
     app.config.from_object("app.settings")
 
-    if is_test:
-        app.config.from_pyfile("test_config.py")
-        app.config["TESTING"] = True
-    else:
-        app.config.from_pyfile("config.py")
+    try:
+        if is_test:
+            app.config["TESTING"] = True
+            app.config.from_pyfile("test_config.py")
+        else:
+            app.config.from_pyfile("config.py")
+    except FileNotFoundError:
+        configs = ["SQLALCHEMY_DATABASE_URI"]
+        for config in configs:
+            app.config[config] = os.environ[config]
 
     db.init_app(app)
     register_routes(app)
@@ -22,7 +29,8 @@ def create_app(is_test=False):
 
     Migrate(app, db)
 
-    loghandler.init_logging(app)
+    if not is_test:
+        loghandler.init_logging(app)
 
     app.logger.info("Server started")
 

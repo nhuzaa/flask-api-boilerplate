@@ -1,6 +1,5 @@
 alembic==1.0.0
 aniso8601==3.0.2
--e git+git@github.com:sudhirt4/flask-api-boilerplate.git@00d4569af23f67e9d196eccb0f5f9ad32466e5da#egg=app
 appdirs==1.4.3
 aspy.yaml==1.1.1
 atomicwrites==1.2.0
