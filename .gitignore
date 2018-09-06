@@ -8,11 +8,14 @@ logs
 .pytest_cache
 
 instance
-htmlcov
 
 __pycache__
 
 *.pyc
 
 .idea
+
 .coverage
+coverage.xml
+htmlcov
+
