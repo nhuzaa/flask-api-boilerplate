@@ -1,2 +1,2 @@
 [run]
-omit=*/migrations/*,*/tests/*,*/venv/*,*/.eggs/**
+omit=*/migrations/*,*/tests/*,*/venv/*,*/.eggs/**,*/app/initializers/*
