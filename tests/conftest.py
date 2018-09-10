@@ -67,3 +67,19 @@ def session(db):
         sess.remove()
         txn.rollback()
         conn.close()
+
+
+@pytest.fixture(scope="function")
+def dummy_user():
+    from app.users.services import UsersService
+
+    users_service = UsersService()
+
+    data = {
+        "first_name": "Sudhir",
+        "last_name": "Shrestha",
+        "username": "sudhirt4",
+        "password": "password",
+    }
+    user = users_service.create(**data)
+    return user

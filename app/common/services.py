@@ -26,7 +26,6 @@ class Service(object):
         before creating a new instance or updating an existing instance.
         :param kwargs: a dictionary of parameters
         """
-        kwargs.pop("csrf_token", None)
         return kwargs
 
     def save(self, model):

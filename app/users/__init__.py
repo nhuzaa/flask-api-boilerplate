@@ -57,3 +57,12 @@ def put_user(user_id):
     result = user_schema.dump(user)
 
     return jsonify(result), 200
+
+
+@users_bp.route("/<int:user_id>", methods=["DELETE"])
+def delete_user(user_id):
+    user = users_service.get_or_404(user_id)
+
+    users_service.delete(user)
+
+    return None, 200
