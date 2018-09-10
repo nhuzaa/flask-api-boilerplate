@@ -65,4 +65,4 @@ def delete_user(user_id):
 
     users_service.delete(user)
 
-    return None, 200
+    return jsonify({}), 200

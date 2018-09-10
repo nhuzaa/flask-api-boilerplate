@@ -83,3 +83,13 @@ def dummy_user():
     }
     user = users_service.create(**data)
     return user
+
+
+@pytest.fixture(scope="function")
+def dummy_user_data():
+    return {
+        "first_name": "Sudhir",
+        "last_name": "Shrestha",
+        "username": "sudhirt4",
+        "password": "password",
+    }

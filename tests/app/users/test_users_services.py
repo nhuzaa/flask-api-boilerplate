@@ -4,23 +4,19 @@ from app.users.services import UsersService
 users_service = UsersService()
 
 
-def test_create_with_valid_parameters():
-    data = {
-        # "email": "sudhirshresthaktm@gmail.com",
-        "first_name": "Sudhir",
-        "last_name": "Shrestha",
-        "username": "sudhirt4",
-        "password": "password",
-    }
-    user = users_service.create(**data)
+def test_create_with_valid_parameters(dummy_user_data):
+    user = users_service.create(**dummy_user_data)
     user = users_service.get(user.id)
     assert user.first_name == "Sudhir"
 
 
-def test_create_with_missing_parameters():
-    data = {"last_name": "Shrestha", "username": "sudhirt4", "password": "password"}
-    with pytest.raises(TypeError):
-        users_service.create(**data)
+def test_create_with_missing_parameters(dummy_user_data):
+    from sqlalchemy.exc import IntegrityError
+
+    dummy_user_data["first_name"] = None
+
+    with pytest.raises(IntegrityError):
+        users_service.create(**dummy_user_data)
 
 
 def test_update_with_valid_parameters(dummy_user):
