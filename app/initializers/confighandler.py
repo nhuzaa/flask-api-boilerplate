@@ -11,6 +11,6 @@ def init_config(app, is_test):
         else:
             app.config.from_pyfile("config.py")
     except FileNotFoundError:
-        configs = ["SQLALCHEMY_DATABASE_URI"]
+        configs = ["SQLALCHEMY_DATABASE_URI", "SENTRY_DSN"]
         for config in configs:
             app.config[config] = os.environ[config]
