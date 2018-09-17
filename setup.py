@@ -12,6 +12,8 @@ setup(
         "flask-marshmallow",
         "marshmallow-sqlalchemy",
         "requests",
+        "raven==6.9.0",
+        "blinker",
     ],
     setup_requires=["pytest-runner"],
     tests_require=["pytest"],
